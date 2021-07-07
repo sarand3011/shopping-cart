@@ -30,13 +30,13 @@ class Cart extends Component {
   }
   newMethod() {
     let classs = "badge p-2 m-2 badge-";
-    classs += this.state.count === 0 ? "warning" : "primary";
+    classs += this.state.value === 0 ? "warning" : "primary";
     return classs;
   }
 
   counter() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
+    const { value } = this.state;
+    return value === 0 ? "Zero" : value;
   }
 }
 
