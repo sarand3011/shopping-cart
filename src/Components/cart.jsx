@@ -2,26 +2,38 @@ import React, { Component } from "react";
 
 class Cart extends Component {
   state = {
-    count: 0,
+    value: this.props.value,
     // imgUrl: "https://picsum.photos/300",
-  };
-  Styles = {
-    fontSize: 25,
-    fontWeight: "bold",
+    // tags: ["tag1", "tag2", "tag3"],
   };
 
+  handleIncrement = () => {
+    this.setState({ value: this.state.value + 1 });
+  };
   render() {
     return (
       <div>
-        <span style={{ fontSize: 25 }} className="badge badge-primary p-2 m-2">
-          {this.counter()}
-        </span>
-        <button style={this.Styles} className="btn btn-secondary btn-sm">
-          +
+        <span className={this.newMethod()}>{this.counter()}</span>
+        <button
+          onClick={() => this.handleIncrement()}
+          className="btn btn-secondary btn-sm"
+        >
+          <b>+</b>
         </button>
+        {/* <ul>
+          {this.state.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul> */}
       </div>
     );
   }
+  newMethod() {
+    let classs = "badge p-2 m-2 badge-";
+    classs += this.state.count === 0 ? "warning" : "primary";
+    return classs;
+  }
+
   counter() {
     const { count } = this.state;
     return count === 0 ? "Zero" : count;
