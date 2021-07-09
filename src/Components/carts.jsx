@@ -9,8 +9,15 @@ class Carts extends Component {
       { id: 4, value: 0 },
     ],
   };
+  handleIncrement = (item) => {
+    const items = [...this.state.items];
+    const index = items.indexOf(item);
+    items[index] = { ...item };
+    items[index].value++;
+    this.setState({ items });
+  };
+  handleReset = () => {};
   handleDelete = (cartId) => {
-    // this.setState({ value: 0 });
     console.log(cartId);
     this.setState({
       items: this.state.items.filter((item) => item.id !== cartId),
@@ -19,8 +26,14 @@ class Carts extends Component {
   render() {
     return (
       <div>
+        <button className="btn btn-primary btn-sm m-2">Reset</button>
         {this.state.items.map((item) => (
-          <Cart key={item.id} onDelete={this.handleDelete} item={item} />
+          <Cart
+            key={item.id}
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+            item={item}
+          />
         ))}
       </div>
     );
